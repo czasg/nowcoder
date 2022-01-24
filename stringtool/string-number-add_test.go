@@ -1,4 +1,4 @@
-package stringmath
+package stringtool
 
 import "testing"
 

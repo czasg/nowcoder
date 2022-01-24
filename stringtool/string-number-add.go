@@ -1,4 +1,4 @@
-package stringmath
+package stringtool
 
 func StringNumberAdd(x, y string) string {
     xi, yi := len(x), len(y)
