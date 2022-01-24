@@ -1,5 +1,6 @@
 package stringtool
 
+// 大数相加 - 字符串数字相加
 func StringNumberAdd(x, y string) string {
     xi, yi := len(x), len(y)
     if xi > yi { // 确保 y 最大
