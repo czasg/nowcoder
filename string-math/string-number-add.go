@@ -1,40 +1,32 @@
 package stringmath
 
 func StringNumberAdd(x, y string) string {
+    xi, yi := len(x), len(y)
+    if xi > yi { // 确保 y 最大
+        xi, yi = yi, xi
+        x, y = y, x
+    }
+
     var (
-        index   int                           // result 下标
-        value   uint8                         // 对应为相加的结果
-        further bool                          // 进位
-        result  = make([]rune, len(x)+len(y)) // 结果值
+        xx, yy, further uint8
+        result          = make([]byte, yi+1)
     )
-    xi, yi := len(x)-1, len(y)-1        // 获取个位值的下标
-    for xi >= 0 || yi >= 0 || further { // 遍历
-        value = 0
-        if xi >= 0 && yi >= 0 { // 从 x、y 的个位值开始相加
-            value = x[xi] + y[yi] - 96
-        } else if xi >= 0 { // 只有 x 值了
-            value = x[xi] - 48
-        } else if yi >= 0 { // 只有 y 值了
-            value = y[yi] - 48
+    for i := 0; i < yi; i++ {
+        yy = y[yi-i-1] - 48 // 取 y 值
+        xx = 0
+        if (xi - i - 1) >= 0 { // 确保 x 没有越界
+            xx = x[xi-i-1] - 48
         }
-        if further { // 是否已经进位
-            further = false
-            value += 1
-        }
-        if value > 9 { // 是否需要进位
-            further = true
-            value -= 10
-        }
-        result[index] = rune(value + 48) // 赋值结果值
-        index++
-        xi--
-        yi--
+        value := xx + yy + further // 当前值
+        further = value / 10       // 进位值
+        value %= 10                // 进位后的值
+        result[yi-i] = value + 48  // 结果值
     }
-    result = result[:index]              // 取结果值切片
-    for i := 0; i < len(result)/2; i++ { // 倒序
-        xxi := i
-        yyi := len(result) - i - 1
-        result[xxi], result[yyi] = result[yyi], result[xxi]
+
+    if further > 0 { // 进位则首位补 1
+        result[0] = 49
+        return string(result)
     }
-    return string(result)
+
+    return string(result[1:])
 }
