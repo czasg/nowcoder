@@ -5,14 +5,14 @@ type ListNode struct {
     Next *ListNode
 }
 
-/* 重排链表 - {1,2,3,4} -> {1,4,2,3}
+/* 重排链表 - {1,2,3,4} -> {1,4,2,3} - 破坏原链表
 思路：从左右两端开始，各取一个重新组织链表
 步骤：
 1、先找到链表中间节点
 2、将中间节点及其后的链表反转
 3、遍历 head 至中间节点，各取一个节点组织新链表
 */
-func ReorderList(head *ListNode) *ListNode {
+func ReorderList(head *ListNode) {
     left := head
     right := ReverseList(MiddleLeftList(head))
     for left != nil {
@@ -23,10 +23,9 @@ func ReorderList(head *ListNode) *ListNode {
         left = leftNext
         right = rightNext
     }
-    return head
 }
 
-/* 反转链表
+/* 反转链表 - 破坏原链表
 思路：1 -> 2 -> 3 => 反转为 => 1 <- 2 <- 3，则仅需要遍历首位，将每一个节点 next 置为前一个即可
 步骤：
 1、初始化 pre 一个空指针，cur、next 两个指针，指向头节点
@@ -85,4 +84,16 @@ func MiddleLeftList(head *ListNode) *ListNode {
         cur = cur.Next
     }
     return cur
+}
+
+func ReadList(head *ListNode) []int {
+    var (
+        result = []int{}
+        cur    = head
+    )
+    for cur != nil {
+        result = append(result, cur.Val)
+        cur = cur.Next
+    }
+    return result
 }

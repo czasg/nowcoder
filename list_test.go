@@ -282,6 +282,37 @@ func TestReverseList(t *testing.T) {
                 },
             },
         },
+        {
+            name: "",
+            args: args{
+                head: &ListNode{
+                    Val: 0,
+                    Next: &ListNode{
+                        Val: 1,
+                        Next: &ListNode{
+                            Val: 2,
+                            Next: &ListNode{
+                                Val:  3,
+                                Next: nil,
+                            },
+                        },
+                    },
+                },
+            },
+            want: &ListNode{
+                Val: 3,
+                Next: &ListNode{
+                    Val: 2,
+                    Next: &ListNode{
+                        Val: 1,
+                        Next: &ListNode{
+                            Val:  0,
+                            Next: nil,
+                        },
+                    },
+                },
+            },
+        },
     }
     for _, tt := range tests {
         t.Run(tt.name, func(t *testing.T) {
@@ -465,8 +496,9 @@ func TestReorderList(t *testing.T) {
     }
     for _, tt := range tests {
         t.Run(tt.name, func(t *testing.T) {
-            if got := ReorderList(tt.args.head); !reflect.DeepEqual(got, tt.want) {
-                t.Errorf("ReorderList() = %v, want %v", got, tt.want)
+            ReorderList(tt.args.head)
+            if !reflect.DeepEqual(tt.args.head, tt.want) {
+                t.Errorf("ReorderList() = %v, want %v", tt.args.head, tt.want)
             }
         })
     }
