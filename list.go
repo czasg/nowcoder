@@ -5,10 +5,26 @@ type ListNode struct {
     Next *ListNode
 }
 
-// 重排链表
-// {1,2,3,4} -> {1,4,2,3}
-// {1,2,3,4,5} -> {1,5,2,4,3}
-func ReorderList(head *ListNode) {}
+/* 重排链表 - {1,2,3,4} -> {1,4,2,3}
+思路：从左右两端开始，各取一个重新组织链表
+步骤：
+1、先找到链表中间节点
+2、将中间节点及其后的链表反转
+3、遍历 head 至中间节点，各取一个节点组织新链表
+*/
+func ReorderList(head *ListNode) *ListNode {
+    left := head
+    right := ReverseList(MiddleLeftList(head))
+    for left != nil {
+        leftNext := left.Next
+        rightNext := right.Next
+        left.Next = right
+        right.Next = leftNext
+        left = leftNext
+        right = rightNext
+    }
+    return head
+}
 
 /* 反转链表
 思路：1 -> 2 -> 3 => 反转为 => 1 <- 2 <- 3，则仅需要遍历首位，将每一个节点 next 置为前一个即可
