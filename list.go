@@ -50,7 +50,7 @@ func ReverseList(head *ListNode) *ListNode {
     return pre
 }
 
-/* 查找链表中间节点 - 偶数选右
+/* 查找链表中间节点 - 偶数选右 - 不破坏原链表
 思路：初始化两个指针，每次遍历，一个遍历一个单位，另一个遍历两个单位，直至不满足遍历
 步骤：
 1、初始化两个指针 cur、double
@@ -69,7 +69,7 @@ func MiddleRightList(head *ListNode) *ListNode {
     return cur
 }
 
-/* 查找链表中间节点 - 偶数选左
+/* 查找链表中间节点 - 偶数选左 - 不破坏原链表
 思路：参考 MiddleRightList
 */
 func MiddleLeftList(head *ListNode) *ListNode {

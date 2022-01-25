@@ -36,7 +36,7 @@ func TestMiddleLeftList(t *testing.T) {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
                         Val:  1,
                         Next: nil,
@@ -44,17 +44,20 @@ func TestMiddleLeftList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  0,
-                Next: nil,
+                Val: 0,
+                Next: &ListNode{
+                    Val:  1,
+                    Next: nil,
+                },
             },
         },
         {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
-                        Val:  1,
+                        Val: 1,
                         Next: &ListNode{
                             Val:  2,
                             Next: nil,
@@ -63,19 +66,22 @@ func TestMiddleLeftList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  1,
-                Next: nil,
+                Val: 1,
+                Next: &ListNode{
+                    Val:  2,
+                    Next: nil,
+                },
             },
         },
         {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
-                        Val:  1,
+                        Val: 1,
                         Next: &ListNode{
-                            Val:  2,
+                            Val: 2,
                             Next: &ListNode{
                                 Val:  3,
                                 Next: nil,
@@ -85,14 +91,20 @@ func TestMiddleLeftList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  1,
-                Next: nil,
+                Val: 1,
+                Next: &ListNode{
+                    Val: 2,
+                    Next: &ListNode{
+                        Val:  3,
+                        Next: nil,
+                    },
+                },
             },
         },
     }
     for _, tt := range tests {
         t.Run(tt.name, func(t *testing.T) {
-            if got := MiddleLeftList(tt.args.head); got != nil && !reflect.DeepEqual(got.Val, tt.want.Val) {
+            if got := MiddleLeftList(tt.args.head); !reflect.DeepEqual(got, tt.want) {
                 t.Errorf("MiddleLeftList() = %v, want %v", got, tt.want)
             }
         })
@@ -130,7 +142,7 @@ func TestMiddleRightList(t *testing.T) {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
                         Val:  1,
                         Next: nil,
@@ -146,9 +158,9 @@ func TestMiddleRightList(t *testing.T) {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
-                        Val:  1,
+                        Val: 1,
                         Next: &ListNode{
                             Val:  2,
                             Next: nil,
@@ -157,19 +169,22 @@ func TestMiddleRightList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  1,
-                Next: nil,
+                Val: 1,
+                Next: &ListNode{
+                    Val:  2,
+                    Next: nil,
+                },
             },
         },
         {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
-                        Val:  1,
+                        Val: 1,
                         Next: &ListNode{
-                            Val:  2,
+                            Val: 2,
                             Next: &ListNode{
                                 Val:  3,
                                 Next: nil,
@@ -179,14 +194,17 @@ func TestMiddleRightList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  2,
-                Next: nil,
+                Val: 2,
+                Next: &ListNode{
+                    Val:  3,
+                    Next: nil,
+                },
             },
         },
     }
     for _, tt := range tests {
         t.Run(tt.name, func(t *testing.T) {
-            if got := MiddleRightList(tt.args.head); got != nil && !reflect.DeepEqual(got.Val, tt.want.Val) {
+            if got := MiddleRightList(tt.args.head); !reflect.DeepEqual(got, tt.want) {
                 t.Errorf("MiddleRightList() = %v, want %v", got, tt.want)
             }
         })
@@ -224,7 +242,7 @@ func TestReverseList(t *testing.T) {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
                         Val:  1,
                         Next: nil,
@@ -232,7 +250,7 @@ func TestReverseList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  1,
+                Val: 1,
                 Next: &ListNode{
                     Val:  0,
                     Next: nil,
@@ -243,9 +261,9 @@ func TestReverseList(t *testing.T) {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
-                        Val:  1,
+                        Val: 1,
                         Next: &ListNode{
                             Val:  2,
                             Next: nil,
@@ -254,9 +272,9 @@ func TestReverseList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  2,
+                Val: 2,
                 Next: &ListNode{
-                    Val:  1,
+                    Val: 1,
                     Next: &ListNode{
                         Val:  0,
                         Next: nil,
@@ -305,7 +323,7 @@ func TestReorderList(t *testing.T) {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
                         Val:  1,
                         Next: nil,
@@ -313,7 +331,7 @@ func TestReorderList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  0,
+                Val: 0,
                 Next: &ListNode{
                     Val:  1,
                     Next: nil,
@@ -324,9 +342,9 @@ func TestReorderList(t *testing.T) {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
-                        Val:  1,
+                        Val: 1,
                         Next: &ListNode{
                             Val:  2,
                             Next: nil,
@@ -335,9 +353,9 @@ func TestReorderList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  0,
+                Val: 0,
                 Next: &ListNode{
-                    Val:  2,
+                    Val: 2,
                     Next: &ListNode{
                         Val:  1,
                         Next: nil,
@@ -349,11 +367,11 @@ func TestReorderList(t *testing.T) {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
-                        Val:  1,
+                        Val: 1,
                         Next: &ListNode{
-                            Val:  2,
+                            Val: 2,
                             Next: &ListNode{
                                 Val:  3,
                                 Next: nil,
@@ -363,11 +381,11 @@ func TestReorderList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  0,
+                Val: 0,
                 Next: &ListNode{
-                    Val:  3,
+                    Val: 3,
                     Next: &ListNode{
-                        Val:  1,
+                        Val: 1,
                         Next: &ListNode{
                             Val:  2,
                             Next: nil,
@@ -380,13 +398,13 @@ func TestReorderList(t *testing.T) {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  0,
+                    Val: 0,
                     Next: &ListNode{
-                        Val:  1,
+                        Val: 1,
                         Next: &ListNode{
-                            Val:  2,
+                            Val: 2,
                             Next: &ListNode{
-                                Val:  3,
+                                Val: 3,
                                 Next: &ListNode{
                                     Val:  4,
                                     Next: nil,
@@ -397,13 +415,13 @@ func TestReorderList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  0,
+                Val: 0,
                 Next: &ListNode{
-                    Val:  4,
+                    Val: 4,
                     Next: &ListNode{
-                        Val:  1,
+                        Val: 1,
                         Next: &ListNode{
-                            Val:  3,
+                            Val: 3,
                             Next: &ListNode{
                                 Val:  2,
                                 Next: nil,
@@ -417,11 +435,11 @@ func TestReorderList(t *testing.T) {
             name: "",
             args: args{
                 head: &ListNode{
-                    Val:  1,
+                    Val: 1,
                     Next: &ListNode{
-                        Val:  2,
+                        Val: 2,
                         Next: &ListNode{
-                            Val:  3,
+                            Val: 3,
                             Next: &ListNode{
                                 Val:  4,
                                 Next: nil,
@@ -431,11 +449,11 @@ func TestReorderList(t *testing.T) {
                 },
             },
             want: &ListNode{
-                Val:  1,
+                Val: 1,
                 Next: &ListNode{
-                    Val:  4,
+                    Val: 4,
                     Next: &ListNode{
-                        Val:  2,
+                        Val: 2,
                         Next: &ListNode{
                             Val:  3,
                             Next: nil,
