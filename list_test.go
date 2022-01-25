@@ -503,3 +503,32 @@ func TestReorderList(t *testing.T) {
         })
     }
 }
+
+func TestReadList(t *testing.T) {
+    type args struct {
+        head *ListNode
+    }
+    tests := []struct {
+        name string
+        args args
+        want []int
+    }{
+        {
+            name: "",
+            args: args{
+                head: &ListNode{
+                    Val:  0,
+                    Next: nil,
+                },
+            },
+            want: []int{0},
+        },
+    }
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            if got := ReadList(tt.args.head); !reflect.DeepEqual(got, tt.want) {
+                t.Errorf("ReadList() = %v, want %v", got, tt.want)
+            }
+        })
+    }
+}
