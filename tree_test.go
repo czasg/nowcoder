@@ -223,3 +223,98 @@ func TestReadLRDTree(t *testing.T) {
         })
     }
 }
+
+func TestSumTree(t *testing.T) {
+    type args struct {
+        tree *TreeNode
+    }
+    tests := []struct {
+        name string
+        args args
+        want int
+    }{
+        {
+            name: "",
+            args: args{
+                tree: &TreeNode{
+                    Val:   1,
+                    Left:  nil,
+                    Right: nil,
+                },
+            },
+            want: 1,
+        },
+        {
+            name: "",
+            args: args{
+                tree: &TreeNode{
+                    Val: 1,
+                    Left: &TreeNode{
+                        Val: 2,
+                        Left: &TreeNode{
+                            Val:   3,
+                            Left:  nil,
+                            Right: nil,
+                        },
+                        Right: nil,
+                    },
+                    Right: nil,
+                },
+            },
+            want: 123,
+        },
+        {
+            name: "",
+            args: args{
+                tree: &TreeNode{
+                    Val: 1,
+                    Left: &TreeNode{
+                        Val:   2,
+                        Left:  nil,
+                        Right: nil,
+                    },
+                    Right: &TreeNode{
+                        Val:   3,
+                        Left:  nil,
+                        Right: nil,
+                    },
+                },
+            },
+            want: 25,
+        },
+        {
+            name: "",
+            args: args{
+                tree: &TreeNode{
+                    Val: 1,
+                    Left: &TreeNode{
+                        Val: 2,
+                        Left: &TreeNode{
+                            Val:   4,
+                            Left:  nil,
+                            Right: nil,
+                        },
+                        Right: &TreeNode{
+                            Val:   5,
+                            Left:  nil,
+                            Right: nil,
+                        },
+                    },
+                    Right: &TreeNode{
+                        Val:   3,
+                        Left:  nil,
+                        Right: nil,
+                    },
+                },
+            },
+            want: 262,
+        },
+    }
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            if got := SumDFSTree(tt.args.tree); got != tt.want {
+                t.Errorf("SumTree() = %v, want %v", got, tt.want)
+            }
+        })
+    }
+}
