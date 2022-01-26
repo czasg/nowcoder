@@ -97,3 +97,24 @@ func ReadList(head *ListNode) []int {
     }
     return result
 }
+
+/* 判断链表中是否有环
+思路：双指针，有环则最终会相遇
+步骤：
+1、快慢指针
+2、相遇则存在环
+*/
+func HasCycleList(head *ListNode) bool {
+    var (
+        fast = head
+        slow = head
+    )
+    for fast != nil && fast.Next != nil {
+        fast = fast.Next.Next
+        slow = slow.Next
+        if fast == slow {
+            return true
+        }
+    }
+    return false
+}
