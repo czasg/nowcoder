@@ -64,6 +64,10 @@ func SumDFSTree(tree *TreeNode) int {
     return dfs(tree, 0)
 }
 
+func FindTreePath(tree *TreeNode, expectNumber int) [][]int {
+    return nil
+}
+
 func MaxSumDFSTree(tree *TreeNode) int {
     return 0
 }
